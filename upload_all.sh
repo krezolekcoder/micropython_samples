@@ -7,12 +7,10 @@ directory="$1"
 device="$2"
 
 # Path to the pyboard.py tool
-# pyboard_tool="micropython/tools/pyboard.py"
-pyboard_tool="${PYBOARD_TOOL_PATH}"
+pyboard_tool="micropython/tools/pyboard.py"
 
-# Check if the PYBOARD_TOOL environment variable is set
-if [ -z "$pyboard_tool" ]; then
-    echo "Error: PYBOARD_TOOL_PATH environment variable is not set."
+if [ ! -f "$pyboard_tool" ]; then
+    echo "Error: Pyboard tool {$pyboard_tool} does not exists."
     exit 1
 fi
 
@@ -34,10 +32,10 @@ if [ ! -d "$directory" ]; then
     exit 1
 fi
 
-# Loop through all Python files in the directory
-for file in "$directory"/*.py; do
+# Loop through all Python files recursively in the directory
+find "$directory" -type f -name "*.py" | while IFS= read -r file; do
     # Check if there are Python files in the directory
-    if [ ! -e "$file" ]; then
+    if [ -z "$file" ]; then
         echo "No Python files found in the directory '$directory'."
         exit 1
     fi
