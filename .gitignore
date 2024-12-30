@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# User defined gitignore
+# file which is storing your wifi network credentials
+ws2812_rest_server/config.py
