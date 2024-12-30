@@ -16,13 +16,13 @@ fi
 
 # Check if the directory is provided
 if [ -z "$directory" ]; then
-    echo "Usage: $0 <directory> <device>"
+    echo "Usage: $0 <directory> <board_serial>"
     exit 1
 fi
 
 # Check if the device is provided
 if [ -z "$device" ]; then
-    echo "Usage: $0 <directory> <device>"
+    echo "Usage: $0 <directory> <board_serial>"
     exit 1
 fi
 
