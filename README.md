@@ -41,8 +41,15 @@ Each sample has its own directory. Current existing samples:
 
 ## Uploading sample to board
 
-To upload a sample to the board, run the following command:
+You can manually upload each file without bash script (Cross platform): 
+```bash
+./micropython/tools/pyboard --device /dev/ttyUSB1 -f cp samples/ws2812_rest_server/main.py :main.py
+./micropython/tools/pyboard --device /dev/ttyUSB1 -f cp samples/ws2812_rest_server/wifi.py :wifi.py
+./micropython/tools/pyboard --device /dev/ttyUSB1 -f cp samples/ws2812_rest_server/lib/microdot/microdot.py :microdot.py
+...
+```
 
+Helper script is provided that automates this on unix based systems 
 ```bash
 ./upload_all.sh <SAMPLE_DIR> <BOARD_SERIAL>
 ```
