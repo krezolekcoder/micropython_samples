@@ -1,53 +1,105 @@
 # micropython_samples
-Various micropython samples mainly for raspberry pi pico boards 
 
-# SETUP : 
+Various MicroPython samples mainly for Raspberry Pi Pico boards.
 
-git submodule update --init --recursive
+---
 
-python3 -m venv venv
+## SETUP
 
-source venv/bin/activate
+To set up the environment and install dependencies, follow these steps:
 
-pip install -r requirements.txt
+1. **Update git submodules**:
+   ```bash
+   git submodule update --init --recursive
+   ```
 
-# Samples structure
+2. **Create a virtual environment**:
+   ```bash
+   python3 -m venv venv
+   ```
 
-Each sample has its own directory. 
-Current existing samples :
-- ws2812_rest_server
-- ble
+3. **Activate the virtual environment**:
+   ```bash
+   source venv/bin/activate
+   ```
 
-# Uploading sample to board
+4. **Install required dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+---
 
-./upload_all.sh <SAMPLE_DIR> <BOARD_SERIAL> 
-f.ex 
+## Samples structure
+
+Each sample has its own directory. Current existing samples:
+
+- `ws2812_rest_server`
+- `ble`
+
+---
+
+## Uploading sample to board
+
+To upload a sample to the board, run the following command:
+
+```bash
+./upload_all.sh <SAMPLE_DIR> <BOARD_SERIAL>
+```
+
+For example, to upload the `ws2812_rest_server` sample to a board with serial `/dev/ttyUSB1`, use:
+
+```bash
 ./upload_all.sh samples/ws2812_rest_server /dev/ttyUSB1
+```
 
-# Running sample
+---
 
-## WS2812_REST_SERVER
+## Running a sample
 
-Remember to place config.py file inside samples/ws2812_rest_server directory with your network credentials like:
+### WS2812_REST_SERVER
 
-SSID = "MY-SSID"
-PASSWORD = "MY-PASSWORD"
+For the **WS2812_REST_SERVER** sample, follow these steps:
 
-Upload sample:
+1. **Place the `config.py` file inside the `samples/ws2812_rest_server` directory** with your network credentials:
 
-./upload_all.sh samples/ws2812_rest_server /dev/ttyUSB1
+   ```python
+   SSID = "MY-SSID"
+   PASSWORD = "MY-PASSWORD"
+   ```
 
-Run application on board and open serial port session
+2. **Upload the sample to the board**:
 
-./micropython/tools/pyboard --device /dev/ttyUSB1 samples/ws2812_rest_server/main.py
+   ```bash
+   ./upload_all.sh samples/ws2812_rest_server /dev/ttyUSB1
+   ```
 
-After succesfull connection to your wifi network you should see log:
+3. **Run the application on the board and open a serial port session**:
 
-Connected successfully!
-Network details: ('192.168.100.33', '255.255.255.0', '192.168.100.1', '192.168.100.1')
-Starting async server on 0.0.0.0:5000...
+   ```bash
+   ./micropython/tools/pyboard --device /dev/ttyUSB1 samples/ws2812_rest_server/main.py
+   ```
 
-Then you can send sample HTML PUT requests that will run rainbow colors on your led strip and put random color at the end
+4. Once successfully connected to the WiFi network, you should see a log similar to this:
 
-python scripts/ws2812_requests.py
+   ```
+   Connected successfully!
+   Network details: ('192.168.100.33', '255.255.255.0', '192.168.100.1', '192.168.100.1')
+   Starting async server on 0.0.0.0:5000...
+   ```
+
+5. You can now send sample **HTML PUT requests** to control the rainbow colors on your LED strip and set a random color at the end. Use the following script to interact with the sample:
+
+   ```bash
+   python scripts/ws2812_requests.py
+   ```
+
+---
+
+### Additional Resources
+
+- For more details about the `pyboard` tool, refer to the official documentation:  
+  [Pyboard Tool Documentation](https://docs.micropython.org/en/latest/reference/pyboard.py.html)
+
+- Or see the source code of the `pyboard` tool:  
+  `micropython/tools/pyboard.py`
