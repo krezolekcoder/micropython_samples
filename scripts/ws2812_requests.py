@@ -3,7 +3,7 @@ import random
 import time 
 
 # Pico W IP address and endpoint
-PICO_IP = "192.168.100.33"  # Replace with your Pico's IP address
+PICO_IP = "192.168.100.34"  # Replace with your Pico's IP address
 ENDPOINT_SET_LEDS = f"http://{PICO_IP}:5000/set-leds"
 ENDPOINT_SET_RAINBOW = f"http://{PICO_IP}:5000/set-rainbow"
 
